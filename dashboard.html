@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | FinanceFlow</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="dashboard.js" defer></script>
+</head>
+<body>
+    <div class="dashboard-wrapper">
+        <nav class="sidebar">
+            <div class="logo">FinanceFlow</div>
+            <ul>
+                <li class="active"><a href="#">Overview</a></li>
+                <li><a href="#">Profile</a></li>
+                <li><a href="history.html">History</a></li>
+                <li><a href="#budget-section">Monthly Budget</a></li>
+            </ul>
+            <button id="logout-btn" class="btn-logout">Logout</button>
+        </nav>
+
+        <main class="main-content">
+            <header>
+                <h2 id="welcome-text">Welcome back!</h2>
+                <p id="user-name-display"></p>
+            </header>
+            
+            <section class="stats-grid">
+                <div class="card income">
+                    <h3>Income</h3>
+                    <p class="amount" id="total-income"> +0.00</p>
+                    <button class="add-btn" onclick="toggleModal('income-modal')">Add Source</button>
+
+                    <div id="income-modal" class="modal">
+                        <div class="modal-content">
+                            <span class="close" onclick="toggleModal('income-modal')">&times;</span>
+                            <h2>Add Income</h2>
+                            <form id="income-form">
+                                <label>Source</label>
+                                <select id="source">
+                                    <option value="salary">Salary</option>
+                                    <option value="bonus">Bonus</option>
+                                    <option value="freelancing">Freelancing</option>
+                                </select>
+                                <label>Amount</label>
+                                <input type="number" id="income-amount" step="0.01" placeholder="0.00" required>
+                                <label>Frequency</label>
+                                <select id="frequency">
+                                    <option value="monthly">Monthly</option>
+                                    <option value="weekly">Weekly</option>
+                                    <option value="once">One-time</option>
+                                </select>
+                                <button type="submit" class="save-btn">Save Income</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card expenses">
+                    <h3>Expenses</h3>
+                    <p class="amount" id="total-expenses">-0.00</p>
+                    <button class="add-btn expense-btn" onclick="toggleModal('expense-modal')">Add Expense</button>
+
+                    <div id="expense-modal" class="modal">
+                        <div class="modal-content">
+                            <span class="close" onclick="toggleModal('expense-modal')">&times;</span>
+                            <h2>Add Expense</h2>
+                            <form id="expense-form">
+                                <label>Category</label>
+                                <select id="expense-category">
+                                    <option value="grocery">Grocery</option>
+                                    <option value="food">Food</option>
+                                    <option value="travel">Travel</option>
+                                    <option value="utility">Utility</option>
+                                    <option value="entertainment">Entertainment</option>
+                                    <option value="miscellaneous">Miscellaneous</option>
+                                </select>
+                                <label>Amount</label>
+                                <input type="number" id="expense-amount" step="0.01" placeholder="0.00" required>
+                                
+                                <label>Date</label>
+                                <input type="date" id="expense-date" required>
+                                
+                                <label>Description (Optional)</label>
+                                <textarea id="expense-desc" placeholder="What was this for?" rows="2"></textarea>
+                                
+                                <button type="submit" class="save-btn expense-save">Save Expense</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card balance">
+                    <h3>Balance</h3>
+                    <p class="amount" id="total-balance">0.00</p>
+                </div>
+            </section>
+            <div class="card graph-card">
+                <h3>Spending Trends</h3>
+                <canvas id="financeChart"></canvas>
+            </div>
+
+            <div class="card budget-card">
+            <div class="budget-header">
+                <h2>Monthly Budget</h2>
+                <button class="add-btn budget-add" onclick="openBudgetModal()">Set Limit</button>
+            </div>
+            <div class="budget-content" id="budget-section">
+                <div class="budget-info">
+                   <span>Spent: <strong><span id="budget-spent-display">0.00</span></strong></span>
+                    <span>Limit: <strong><span id="budget-limit-display">2000.00</span></strong></span>
+                </div>
+                <div class="progress-container">
+                    <div id="budget-progress-bar" class="progress-bar" style="width: 0%;"></div>
+                </div>
+                <p class="budget-status">
+                    <span id="budget-message">You have plenty of budget remaining.</span>
+                </p>
+            </div>
+        </div>
+
+        <div id="budget-modal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeBudgetModal()">&times;</span>
+                <h2>Set Monthly Budget</h2>
+                <form id="budget-form" onsubmit="saveBudgetSettings(event)">
+                    <label>Monthly Limit</label>
+                    <input type="number" id="new-budget-limit" required placeholder="e.g. 2000">
+                    <button type="submit" class="save-btn budget-add">Update Budget</button>
+                </form>
+            </div>
+        </div>
+            
+        </main>
+    </div>
+</body>
+</html>
