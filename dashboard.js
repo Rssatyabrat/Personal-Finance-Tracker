@@ -30,25 +30,35 @@ window.onload = function() {
 // --- FUNCTIONS ---
 
 async function loadData() {
-    var response = await fetch(apiUrl + "/dashboard-stats/" + userEmail);
-    var data = await response.json();
+    console.log("Dashboard: Fetching stats for", userEmail);
+    
+    try {
+        const response = await fetch(apiUrl + "/dashboard-stats/" + userEmail);
+        
+        if (!response.ok) {
+            throw new Error(`Server returned status ${response.status}`);
+        }
 
-    var income = data.income;
-    var expenses = data.expenses;
-    var balance = data.balance;
+        const data = await response.json();
+        console.log("Dashboard: Received data from server:", data);
 
-    if (income == null) income = 0;
-    if (expenses == null) expenses = 0;
-    if (balance == null) balance = 0;
+        // Fallback to 0 if data is missing/null
+        const income = data.income || 0;
+        const expenses = data.expenses || 0;
+        const balance = data.balance || 0;
 
+        // Update the UI
+        document.getElementById('total-income').innerText = "+" + income.toFixed(2);
+        document.getElementById('total-expenses').innerText = "-" + expenses.toFixed(2);
+        document.getElementById('total-balance').innerText = balance.toFixed(2);
 
-    document.getElementById('total-income').innerText = "+" + income;
-    document.getElementById('total-expenses').innerText = "-" + expenses;
-    document.getElementById('total-balance').innerText = balance;
+        // Run auxiliary functions
+        if (typeof checkBudget === "function") checkBudget(expenses);
+        if (typeof showGraph === "function") showGraph(income, expenses);
 
-
-    checkBudget(expenses);
-    showGraph(income, expenses);
+    } catch (error) {
+        console.error("Dashboard: Error loading data:", error);
+    }
 }
 
 function checkBudget(spent) {
