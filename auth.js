@@ -13,7 +13,7 @@ const handleAuth = async (e, type) => {
   console.log(`Attempting ${type} for: ${username}`);
 
   try {
-    const response = await fetch(`http://localhost:3000/${type.toLowerCase()}`, {
+    const response = await fetch(`https://personal-finance-tracker-8l67.onrender.com/${type.toLowerCase()}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ fullname, username, password })

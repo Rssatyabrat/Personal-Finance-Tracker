@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         try {
             
-            const response = await fetch(`http://localhost:3000/api/history/${userEmail}`);
+            const response = await fetch(`https://personal-finance-tracker-8l67.onrender.com/api/history/${userEmail}`);
             
             if (!response.ok) throw new Error('Network response was not ok');
             

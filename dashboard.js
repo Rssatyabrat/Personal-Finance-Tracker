@@ -1,5 +1,5 @@
 // --- VARIABLES ---
-const apiUrl = "http://localhost:3000/api";
+const apiUrl = "https://personal-finance-tracker-8l67.onrender.com/api";
 const userEmail = localStorage.getItem('userEmail');
 var budgetLimit = localStorage.getItem('budgetLimit');
 
