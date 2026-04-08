@@ -5,7 +5,7 @@ var budgetLimit = localStorage.getItem('budgetLimit');
 
 // Set default budget if missing
 if (budgetLimit == null) {
-    budgetLimit = 2000;
+    budgetLimit = 15000;
 }
 window.onload = function() {
     
