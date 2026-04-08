@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>History | FinanceFlow</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="history.js" defer></script>
+    <script src="dashboard.js" defer></script>
+</head>
+<body>
+    <div class="dashboard-wrapper">
+        <nav class="sidebar">
+            <div class="logo">FinanceFlow</div>
+            <ul>
+                <li><a href="dashboard.html">Overview</a></li>
+                <li><a href="#">Profile</a></li>
+                <li class="active"><a href="history.html">History</a></li>
+                <li><a href="dashboard.html/#budget-section">Monthly Budget</a></li>
+            </ul>
+            <button id="logout-btn" class="btn-logout">Logout</button>
+        </nav>
+
+        <main class="main-content">
+            <header>
+                <h2>Transaction History</h2>
+                <p>View all your past incomes and expenses</p>
+            </header>
+
+            <div class="filter-bar">
+                <div class="history-toggle" id="transaction-filter">
+                    <button class="toggle-btn active" data-type="all">All</button>
+                    <button class="toggle-btn" data-type="income">Income</button>
+                    <button class="toggle-btn" data-type="expense">Expense</button>
+                </div>
+                <input type="text" id="history-search" placeholder="Search by description...">
+            </div>
+
+            <section class="history-container">
+                <div class="card history-card-full">
+                    <table class="history-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Type</th>
+                                <th>Category</th>
+                                <th>Description</th>
+                                <th>Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody id="full-history-body">
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
