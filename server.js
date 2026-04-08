@@ -9,7 +9,11 @@ require('dotenv').config(); // Load variables from .env file
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.use(cors());
+app.use(cors({
+    origin: "https://personal-finance-tracker-six.vercel.app", 
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true
+}));
 app.use(express.json());
 
 // --- DATABASE CONNECTION ---
