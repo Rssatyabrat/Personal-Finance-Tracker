@@ -10,7 +10,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(cors({
-    origin: "https://personal-finance-tracker-six.vercel.app", 
+    origin: "https://personal-finance-tracker-six-bay.vercel.app", 
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true
 }));
