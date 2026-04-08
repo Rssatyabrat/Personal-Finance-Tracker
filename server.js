@@ -10,7 +10,14 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(cors({
-    origin: "https://personal-finance-tracker-six-bay.vercel.app", 
+    origin: function (origin, callback) {
+        // This allows any URL that ends with .vercel.app to talk to your server
+        if (!origin || origin.endsWith(".vercel.app")) {
+            callback(null, true);
+        } else {
+            callback(new Error("Not allowed by CORS"));
+        }
+    }, 
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true
 }));
