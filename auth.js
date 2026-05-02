@@ -58,3 +58,16 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('signup-form')?.addEventListener('submit', (e) => handleAuth(e, 'Signup'));
     document.getElementById('login-form')?.addEventListener('submit', (e) => handleAuth(e, 'Login'));
 });
+
+function togglePassword() {
+  const passwordInput = document.getElementById("password");
+  const eyeIcon = document.getElementById("eye-icon");
+
+  if (passwordInput.type === "password"){
+    passwordInput.type = "text";
+    eyeIcon.innerText = "*"
+  } else{
+    passwordInput.type = "password";
+    eyeIcon.innerText = "@"
+  }
+}
