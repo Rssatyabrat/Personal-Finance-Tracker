@@ -80,8 +80,8 @@
                                 <label>Amount</label>
                                 <input type="number" id="expense-amount" step="0.01" placeholder="0.00" required>
                                 
-                                <label>Date</label>
-                                <input type="date" id="expense-date" required>
+                                <label >Date</label>
+                                <input type="date" id="expense-date" onfocus="this.max= new date().toLocalDateString('en-CA')" required>
                                 
                                 <label>Description (Optional)</label>
                                 <textarea id="expense-desc" placeholder="What was this for?" rows="2"></textarea>
@@ -107,6 +107,18 @@
                 <h2>Monthly Budget</h2>
                 <button class="add-btn budget-add" onclick="openBudgetModal()">Set Limit</button>
             </div>
+            <div class="" id="budgetwarning">
+                <div class="">
+                    <h2> Budget Warning</h2>
+                    <p>Your Budget is crossing 90%/<p>
+                    <p>do you want to proceed ?</p>
+                    <div class="">
+                        <button id="btnyes" class="">YES</button>
+                        <button id="btnno" class="">NO</button> 
+                    </div>
+                </div>
+            </div>
+
             <div class="budget-content" id="budget-section">
                 <div class="budget-info">
                    <span>Spent: <strong><span id="budget-spent-display">0.00</span></strong></span>

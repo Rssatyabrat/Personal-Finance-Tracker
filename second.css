@@ -56,6 +56,10 @@ p {
     background-color: #3498db;
     color: white;
 }
+.password-warpper {
+    position: relative;
+    display: flex;
+}
 
 /* --- 3. Auth Pages (Login/Signup) --- */
 .auth-container {
